@@ -20,8 +20,6 @@ router.post('/questions/add', isAuthenticated, async (req, res) => {
 
   try {
     const quest = await Question.create({ questionText, answer: '', author });
-    req.session.save();
-
     res.send(quest);
   } catch (err) {
     res.send('adding question has problems');

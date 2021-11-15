@@ -9,7 +9,6 @@ router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.create({ username, password });
-    req.session.save();
     res.send(user);
   } catch (err) {
     console.log(err);
@@ -34,7 +33,6 @@ router.post('/login', async (req, res) => {
       if (password === passDB) {
         req.session.username = username;
         req.session.password = password;
-        req.session.save();
         res.send('user logged in successfully');
       } else {
         res.send('user credentials are wrong');
@@ -49,7 +47,6 @@ router.post('/login', async (req, res) => {
 router.post('/logout', isAuthenticated, (req, res) => {
   req.session.username = '';
   req.session.password = '';
-  req.session.save();
   res.send('user is logged out');
 });
 
