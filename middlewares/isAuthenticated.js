@@ -5,6 +5,7 @@ const isAuthenticated = (req, next) => {
   if (req.session.username && req.session.username !== '') {
     next();
   } else {
+    console.log("Error");
     next(new Error('authentication failed'));
   }
 };

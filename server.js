@@ -17,15 +17,13 @@ mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-app.use(express.json());
-
 app.use(session({
   name: 'session',
   keys: ['key1', 'key2'],
   maxAge: 3600, // in ms
 }));
 
-// app.use(isAuthenticated);
+app.use(express.json());
 
 app.get('/', (req, res) => res.send('hello world!'));
 
@@ -34,18 +32,6 @@ app.use('/api', ApiRouter);
 
 // app.use((err, req, res) => {
 //   res.status(500).send('There was an error!');
-// });
-
-// verification middleware
-
-// app.use((req, res, next) => {
-//   const { username, password } = req.query;
-//   console.log(username);
-//   if (isAuthenticated(username, password)) {
-//     next();
-//   } else {
-//     next(new Error('user is undefined'));
-//   }
 // });
 
 // Start listening for requests
