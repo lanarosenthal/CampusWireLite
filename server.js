@@ -5,7 +5,7 @@ const session = require('cookie-session');
 
 const AccountRouter = require('./routes/account');
 const ApiRouter = require('./routes/api');
-const isAuthenticated = require('./middlewares/isAuthenticated');
+// const isAuthenticated = require('./middlewares/isAuthenticated');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,20 +19,16 @@ mongoose.connect(MONGO_URI, {
 
 app.use(session({
   name: 'session',
-  keys: ['key1', 'key2'],
+  keys: ['key1'],
   maxAge: 3600, // in ms
 }));
 
 app.use(express.json());
 
-app.get('/', (req, res) => res.send('hello world!'));
+// app.get('/', (req, res) => res.send('hello world!'));
 
 app.use('/account', AccountRouter);
 app.use('/api', ApiRouter);
-
-// app.use((err, req, res) => {
-//   res.status(500).send('There was an error!');
-// });
 
 // Start listening for requests
 app.listen(port, () => {

@@ -1,4 +1,4 @@
-const isAuthenticated = (req, next) => {
+const isAuthenticated = (req, _res, next) => {
   console.log(`username ${req.session}`);
 
   console.log(`username ${req.session.username}`);
