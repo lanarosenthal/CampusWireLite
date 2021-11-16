@@ -29,13 +29,10 @@ router.post('/questions/add', isAuthenticated, async (req, res) => {
 // questions/answer
 router.post('/questions/answer', isAuthenticated, async (req, res) => {
   const { _id, answer } = req.body;
-  console.log(_id);
   try {
     const ans = await Question.findOneAndUpdate({ _id }, { answer });
-    console.log(ans);
     res.send(ans);
   } catch (err) {
-    console.log(err);
     res.send('adding answer has problems');
   }
 });

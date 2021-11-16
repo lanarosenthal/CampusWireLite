@@ -11,7 +11,6 @@ router.post('/signup', async (req, res) => {
     const user = await User.create({ username, password });
     res.send(user);
   } catch (err) {
-    console.log(err);
     res.send('user creation has problems');
   }
 });
@@ -22,14 +21,11 @@ router.post('/login', async (req, res) => {
 
   try {
     const user = await User.findOne({ username });
-    console.log(user);
 
     if (!user) {
       res.send('user does not exist');
     } else {
       const { password: passDB } = user; // const passDB = user.password
-      console.log(password);
-      console.log(passDB);
       if (password === passDB) {
         req.session.username = username;
         req.session.password = password;
