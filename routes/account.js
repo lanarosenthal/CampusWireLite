@@ -29,6 +29,8 @@ router.post('/login', async (req, res) => {
       if (password === passDB) {
         req.session.username = username;
         req.session.password = password;
+        req.session.save();
+        // console.log(req.session);
         res.send('user logged in successfully');
       } else {
         res.send('user credentials are wrong');

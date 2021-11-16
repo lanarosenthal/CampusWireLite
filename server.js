@@ -19,8 +19,8 @@ mongoose.connect(MONGO_URI, {
 
 app.use(session({
   name: 'session',
-  keys: ['key1'],
-  maxAge: 3600, // in ms
+  keys: ['key1', 'key2'],
+  maxAge: 86400000, // in ms
 }));
 
 app.use(express.json());

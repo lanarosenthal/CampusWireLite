@@ -17,9 +17,12 @@ router.get('/questions', async (req, res) => {
 // questions/add
 router.post('/questions/add', isAuthenticated, async (req, res) => {
   const { questionText, author } = req.body;
+  // console.log(req.session);
 
   try {
     const quest = await Question.create({ questionText, answer: '', author });
+    // console.log(req.session);
+
     res.send(quest);
   } catch (err) {
     res.send('adding question has problems');
@@ -29,8 +32,11 @@ router.post('/questions/add', isAuthenticated, async (req, res) => {
 // questions/answer
 router.post('/questions/answer', isAuthenticated, async (req, res) => {
   const { _id, answer } = req.body;
+  // console.log(req.session);
+
   try {
     const ans = await Question.findOneAndUpdate({ _id }, { answer });
+    // console.log(req.session);
     res.send(ans);
   } catch (err) {
     res.send('adding answer has problems');
