@@ -23,12 +23,23 @@ app.use(session({
   maxAge: 86400000, // in ms
 }));
 
+app.use(express.static('dist'));
+
 app.use(express.json());
 
 // app.get('/', (req, res) => res.send('hello world!'));
 
 app.use('/account', AccountRouter);
 app.use('/api', ApiRouter);
+
+app.get('/favicon.ico', (req, res) => {
+  res.status(404).send();
+})
+
+// set the initial entry point
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+})
 
 // Start listening for requests
 app.listen(port, () => {
