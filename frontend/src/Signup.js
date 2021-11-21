@@ -10,6 +10,8 @@ const Signup = () => {
     const { data } = await axios.post('/account/signup', { username, password });
     if (data === 'user created') {
       setSucceeded(true);
+    } else {
+      window.alert(data);
     }
   };
 

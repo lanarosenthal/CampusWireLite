@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({setSessionUsername, loggedIn, setLoggedIn}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [succeeded, setSucceeded] = useState(false);
@@ -10,6 +10,10 @@ const Login = () => {
     const { data } = await axios.post('/account/login', { username, password });
     if (data === 'user logged in successfully') {
       setSucceeded(true);
+      setSessionUsername(username);
+      setLoggedIn(true);
+    } else {
+        window.alert(data);
     }
   };
 
