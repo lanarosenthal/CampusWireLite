@@ -8,8 +8,8 @@ const router = express.Router();
 router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
   try {
-    const user = await User.create({ username, password });
-    res.send(user);
+    await User.create({ username, password });
+    res.send('user created');
   } catch (err) {
     res.send('user creation has problems');
   }

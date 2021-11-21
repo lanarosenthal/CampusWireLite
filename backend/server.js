@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const session = require('cookie-session');
 // const { MongoClient } = require('mongodb');
+const path = require('path');
 
 const AccountRouter = require('./routes/account');
 const ApiRouter = require('./routes/api');
@@ -34,12 +35,12 @@ app.use('/api', ApiRouter);
 
 app.get('/favicon.ico', (req, res) => {
   res.status(404).send();
-})
+});
 
 // set the initial entry point
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/index.html'));
-})
+});
 
 // Start listening for requests
 app.listen(port, () => {
