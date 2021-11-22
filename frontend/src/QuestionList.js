@@ -1,27 +1,40 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const QuestionList = function () {
-    const [questionList, setQuestionList] = useState([]);
+const QuestionList = ({
+  setQuestion, setAuthor, setGlobalAnswer, setID,
+}) => {
+  const [questionList, setQuestionList] = useState([])
 
-    useEffect(async () => {
-        const { data: questions } = await axios.get('/api/questions'); // GET request
-        setQuestionList(questions);
-    }, []);
+  const retrieveQs = async () => {
+    const { data } = await axios.get('/api/questions')
+    setQuestionList(data)
+  }
 
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      retrieveQs()
+    }, 2000)
+    // return a clean-up function so that the repetition can be stopped
+    // when the component is unmounted
+    return () => clearInterval(intervalID)
+  }, [])
 
-    return (
-        <>
-        <h1>Questions:</h1>
-        {data.map((question) => (
-            <p>
-            {' '}
-            {question.questionText}
-            {' '}
-            </p>
-        ))}
-        </>
-    );
-};
+  const updateQuestion = ({ question }) => {
+    setQuestion(question.questionText)
+    setAuthor(question.author)
+    setGlobalAnswer(question.answer)
+    setID(question._id)
+  }
 
-export default QuestionList;
+  return (
+    <>
+      <h1>Questions:</h1>
+      {questionList.map(question => (
+        <button type="submit" onClick={e => updateQuestion({ question })}>{question.questionText}</button>
+      ))}
+    </>
+  )
+}
+
+export default QuestionList
