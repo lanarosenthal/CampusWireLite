@@ -21,10 +21,6 @@ router.post('/questions/add', isAuthenticated, async (req, res) => {
 
   try {
     await Question.create({ questionText, answer: '', author })
-    console.log(questionText)
-
-    console.log(author)
-
     res.send('question added')
   } catch (err) {
     res.send('adding question has problems')
@@ -34,8 +30,6 @@ router.post('/questions/add', isAuthenticated, async (req, res) => {
 // questions/answer
 router.post('/questions/answer', isAuthenticated, async (req, res) => {
   const { _id, answer } = req.body
-  console.log('id', _id)
-  console.log('answer', answer)
 
   try {
     await Question.findOneAndUpdate({ _id }, { answer })

@@ -20,13 +20,20 @@ const Login = ({ setSessionUsername, loggedIn, setLoggedIn }) => {
 
   return (
     <>
+      <p>Username:</p>
       <input onChange={e => setUsername(e.target.value)} />
+      <br />
+      <p>Password:</p>
       <input onChange={e => setPassword(e.target.value)} />
+      <br />
+      <br />
       <Link to="/">
-        <button type="submit" onClick={loginUser}> login </button>
+        <button type="submit" onClick={loginUser}> Login </button>
       </Link>
-      <p>Not yet registered?</p>
-      <Link to="/signup">Sign up</Link>
+      <p>
+        Not yet registered?
+        <Link to="/signup"> Sign up</Link>
+      </p>
     </>
   )
 }

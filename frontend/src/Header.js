@@ -13,17 +13,19 @@ const Header = ({
 
   return (
     <>
-      <h1>Campuswire Lite</h1>
-      {(loggedIn) ? (
-        <>
-          <p>
-            Hi &nbsp;
-            {sessionUsername}
-          </p>
-          <Link to="/"><button type="submit" onClick={logoutUser}> Logout </button></Link>
-        </>
-      )
-        : (<Link to="/login"><button type="submit"> Login </button></Link>) }
+      <div style={{ display: `flex`, flexDirection: `row` }}>
+        <h1>Campuswire Lite</h1>
+        {(loggedIn) ? (
+          <>
+            <p>
+              Hi &nbsp;
+              {sessionUsername}
+            </p>
+            <Link to="/"><button type="submit" onClick={logoutUser}> Logout </button></Link>
+          </>
+        )
+          : (<Link to="/login"><button type="submit"> Login </button></Link>) }
+      </div>
     </>
   )
 }

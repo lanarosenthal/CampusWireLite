@@ -11,13 +11,10 @@ const AddQuestion = ({ loggedIn, author }) => {
   const [questionText, setQuestionText] = useState('')
 
   const addQ = async () => {
-    console.log('sessionUsername ', author)
     const { data } = await axios.post('/api/questions/add', { questionText, author })
     if (data === 'question added') {
-      console.log('question added')
       setShow(false)
     } else {
-      console.log('issue')
       setShow(false)
       window.alert(data)
     }

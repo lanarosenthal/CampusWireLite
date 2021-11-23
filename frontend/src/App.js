@@ -32,11 +32,15 @@ const App = () => {
                 {' '}
                 <Header setSessionUsername={setSessionUsername} loggedIn={loggedIn} setLoggedIn={setLoggedIn} sessionUsername={sessionUsername} />
                 <br />
-                <AddQuestion loggedIn={loggedIn} author={sessionUsername} />
-                <br />
-                <QuestionList setID={setID} setQuestion={setQuestion} setAuthor={setAuthor} setGlobalAnswer={setGlobalAnswer} />
-                <br />
-                <QuestionDisplay _id={_id} loggedIn={loggedIn} questionText={question} author={author} setGlobalAnswer={setGlobalAnswer} globalAnswer={globalAnswer} />
+                <div style={{ display: `flex`, flexDirection: `row` }}>
+                  <div style={{ width: `50%` }}>
+                    <AddQuestion loggedIn={loggedIn} author={sessionUsername} />
+                    <br />
+                    <QuestionList setID={setID} setQuestion={setQuestion} setAuthor={setAuthor} setGlobalAnswer={setGlobalAnswer} />
+                  </div>
+                  <br />
+                  <QuestionDisplay style={{ width: `50%` }} _id={_id} loggedIn={loggedIn} questionText={question} author={author} setGlobalAnswer={setGlobalAnswer} globalAnswer={globalAnswer} />
+                </div>
               </>
 )}
           />
