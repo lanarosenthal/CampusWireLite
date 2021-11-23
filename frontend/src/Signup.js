@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
   const [username, setUsername] = useState('')
@@ -19,12 +20,11 @@ const Signup = () => {
     <>
       <input onChange={e => setUsername(e.target.value)} />
       <input onChange={e => setPassword(e.target.value)} />
-      <button type="submit" onClick={createUser}> create user </button>
-      <p>
-        {' '}
-        succeeded:
-        {`${succeeded}`}
-      </p>
+      <Link to="/login">
+        <button type="submit" onClick={createUser}> create user </button>
+      </Link>
+      <p>Already have an account?</p>
+      <Link to="/login">Log in</Link>
     </>
   )
 }

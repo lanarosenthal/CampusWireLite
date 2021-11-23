@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import { Link } from 'react-router-dom'
 
-const AddQuestion = ({ loggedIn, sessionUsername }) => {
+const AddQuestion = ({ loggedIn, author }) => {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const [questionText, setQuestionText] = useState('')
 
   const addQ = async () => {
-    console.log(sessionUsername)
-    const { data } = await axios.post('/api/questions/add', { questionText, sessionUsername })
+    console.log('sessionUsername ', author)
+    const { data } = await axios.post('/api/questions/add', { questionText, author })
     if (data === 'question added') {
       console.log('question added')
       setShow(false)
@@ -43,9 +44,11 @@ const AddQuestion = ({ loggedIn, sessionUsername }) => {
             </Modal>
           </>
         ) : (
-          <Button variant="primary">
-            Log in to ask a Question
-          </Button>
+          <Link to="/login">
+            <Button variant="primary">
+              Log in to ask a Question
+            </Button>
+          </Link>
         )}
     </>
   )

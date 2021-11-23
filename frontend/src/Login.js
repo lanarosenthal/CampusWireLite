@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Login = ({ setSessionUsername, loggedIn, setLoggedIn }) => {
   const [username, setUsername] = useState('')
@@ -21,12 +22,11 @@ const Login = ({ setSessionUsername, loggedIn, setLoggedIn }) => {
     <>
       <input onChange={e => setUsername(e.target.value)} />
       <input onChange={e => setPassword(e.target.value)} />
-      <button type="submit" onClick={loginUser}> login </button>
-      <p>
-        {' '}
-        succeeded:
-        {`${succeeded}`}
-      </p>
+      <Link to="/">
+        <button type="submit" onClick={loginUser}> login </button>
+      </Link>
+      <p>Not yet registered?</p>
+      <Link to="/signup">Sign up</Link>
     </>
   )
 }

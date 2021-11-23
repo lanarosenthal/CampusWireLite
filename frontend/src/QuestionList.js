@@ -17,7 +17,9 @@ const QuestionList = ({
     }, 2000)
     // return a clean-up function so that the repetition can be stopped
     // when the component is unmounted
-    return () => clearInterval(intervalID)
+    return () => {
+      setQuestionList([]); clearInterval(intervalID)
+    }
   }, [])
 
   const updateQuestion = ({ question }) => {
